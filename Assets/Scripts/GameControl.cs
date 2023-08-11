@@ -93,7 +93,7 @@ public class GameControl : MonoBehaviour
         }
         if (num == 0) //eğer sayaç sıfırlanırsa
         {
-            EndGame = true; //oyun biter.
+           // EndGame = true; //oyun biter.
             NextText.SetActive(true);
         }
     }
