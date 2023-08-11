@@ -20,7 +20,8 @@ public class GameControl : MonoBehaviour
     //dizi oluşturup unity üzerinden kelimeleri dizilere yerleştirdik.
 
     public List<string> CorrectWords;
-
+    public bool[] AllCorrectWords;
+    public static bool EndGame;
 
 
     void Start()
@@ -35,14 +36,16 @@ public class GameControl : MonoBehaviour
         arrs.Add(arr7);
         arrs.Add(arr8);
 
-
+        AllCorrectWords = new bool[CorrectWords.Count];
 
     }
 
 
     void Update()
     {
-        if (ClickControl.Control == true) //kelimenin doğruluğunu tespit etmek için.
+        if (ClickControl.Control == true && EndGame==false )
+            //tıklama bittiyse ve oyun bitmediyse aşağıdaki kodlar çalışsın.
+            //kelimenin doğruluğunu tespit etmek için.
         {
             ClickControl.Control = false; //sadece bi kere çalışması için geri false'a çevirmeliyiz yoksa frame sayısı kadar çalışır.
 
@@ -50,24 +53,53 @@ public class GameControl : MonoBehaviour
 
 
 
-                if (ClickControl.CurrentWord == CorrectWords[i])
+                if (ClickControl.CurrentWord == CorrectWords[i]&& AllCorrectWords[i]==false)
+                //eğer girdiğim şimdiki kelime CorrectWords listesinden bir elemana eşitse 
+
 
                 {
+                    AllCorrectWords[i] = true;
 
-                    int[] index = arrs[i];
+                    int[] index = arrs[i]; 
 
-                    for (int j = 0; j < CorrectWords[i].Length; j++)
+                    for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
                     {
 
 
                         Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
+                        //git Boxes listesininin içindeki dizilerin Text'ini al onları şimdiki kelimenin?
+                        //bunu stringe çevir.
 
                     }
                 }
             }
             ClickControl.CurrentWord = "";
+            EndGameControl();
+        }
+      
+    }
+    public void EndGameControl()
+    {
+        int num = 0;
+        for(int i=0; i< AllCorrectWords.Length; i++)
+            //bütün doğru kelimeler bulunana kadar.
+        {
+            if(AllCorrectWords[i]== false) //eğer bütün doğru kelimeler bulunmamışsa
+            {
+                //sayıyı bir arttır.
+                num++;
+            }
+        }
+        if (num == 0) //eğer sayaç sıfırlanırsa
+        {
+            EndGame = true; //oyun biter.
         }
     }
-    
+
+
+
+
+   
 }
+
 

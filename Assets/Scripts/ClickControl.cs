@@ -38,7 +38,7 @@ public class ClickControl : MonoBehaviour
     }
     public void OnMouseDown() //üzerine tıkladığın zaman aktifleşen.
     {
-        if (FirstClick == false)
+        if (FirstClick == false &&GameControl.EndGame==false)
         {
             OnClick();
             FirstClick =true;
