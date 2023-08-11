@@ -22,11 +22,12 @@ public class GameControl : MonoBehaviour
     public List<string> CorrectWords;
     public bool[] AllCorrectWords;
     public static bool EndGame;
+    public GameObject NextText;
 
 
     void Start()
     {
-        
+        NextText.SetActive(false);
         arrs.Add(arr1);
         arrs.Add(arr2);
         arrs.Add(arr3);
@@ -93,6 +94,7 @@ public class GameControl : MonoBehaviour
         if (num == 0) //eğer sayaç sıfırlanırsa
         {
             EndGame = true; //oyun biter.
+            NextText.SetActive(true);
         }
     }
 
