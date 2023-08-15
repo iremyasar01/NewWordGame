@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameControl : MonoBehaviour
 {
+  
+
     public List<Transform> Boxes;
     public List<int[]> arrs = new List<int[]>();
 

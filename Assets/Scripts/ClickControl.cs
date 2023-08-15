@@ -5,6 +5,8 @@ using TMPro;
 
 public class ClickControl : MonoBehaviour
 {
+    
+  
     public static string CurrentWord = "";
     public static bool FirstClick = false; //her objede oluşacağından ötürü tıklanmayan objelerde sıkıntı çıkarmasın diye
     //static tanımladık.
@@ -13,8 +15,10 @@ public class ClickControl : MonoBehaviour
     public static bool Control = false;
     void Start()
     {
-        
+     
+
     }
+  
 
 
     void Update()
@@ -24,16 +28,29 @@ public class ClickControl : MonoBehaviour
             text = GetComponent<TextMeshPro>();
             text.color = Color.black;
             active = true;
+
+          
         }
-        
     }
-    public void OnClick() 
-    {
+
+
+        public void OnClick()
+        {
         text = GetComponent<TextMeshPro>();
         text.color = Color.blue;
+        // LineManager'ı burada çağırarak çizgi çizimini güncelle
+        LineControl lineControl = FindObjectOfType<LineControl>();
+        if (lineControl != null)
+        {
+            lineControl.UpdateLineRenderer();
+        }
         CurrentWord += GetComponent<TextMeshPro>().text;
+       
         Debug.Log(CurrentWord);
         active = false;
+
+       
+
 
     }
     public void OnMouseDown() //üzerine tıkladığın zaman aktifleşen.
@@ -41,7 +58,9 @@ public class ClickControl : MonoBehaviour
         if (FirstClick == false &&GameControl.EndGame==false)
         {
             OnClick();
-            FirstClick =true;
+
+             FirstClick =true;
+           
         }
       
     }
@@ -50,7 +69,9 @@ public class ClickControl : MonoBehaviour
        if (FirstClick == true && active==true) //ilk tıklama ile harf seçimi başlıyor sonra üzerine geldiğinde harfi seçtiriyor.
         {
             OnClick();
-         
+          
+            FirstClick = true;
+
         }
        
     }
@@ -58,9 +79,17 @@ public class ClickControl : MonoBehaviour
     public void OnMouseUp() //üzerinden gittikten sonra aktifleşen.
     {
         FirstClick = false;
-        
-       // CurrentWord = "";
+
+        // LineManager'ı burada çağırarak çizgiyi temizle
+        LineControl lineControl = FindObjectOfType<LineControl>();
+        if (lineControl != null)
+        {
+            lineControl.ClearSelectedLetters();
+        }
+
+        // CurrentWord = "";
         Control = true;
+       
     }
-    
+   
 }
