@@ -5,18 +5,23 @@ using TMPro;
 
 public class ClickControl : MonoBehaviour
 {
-    
-  
+    public GameObject highlightPrefab; //Yuvarlak obje ön tanımlı prefab
+                                       // private GameObject currentHighlight; // Şu an seçili olan yuvarlak obje
+
+    private SpriteRenderer highlightRenderer; // Yuvarlak objenin Sprite Renderer bileşeni
+    private bool isHighlighted = false; // Vurgulamanın açık veya kapalı olduğunu tutar
+
     public static string CurrentWord = "";
     public static bool FirstClick = false; //her objede oluşacağından ötürü tıklanmayan objelerde sıkıntı çıkarmasın diye
     //static tanımladık.
     TextMeshPro text;
     public bool active = true; //bir harfi bir kelimede bir kere seçebilmesi adına.
     public static bool Control = false;
+
     void Start()
     {
-     
-
+        highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
+        highlightRenderer.enabled = false; // Vurgulamayı başlangıçta kapalı yap
     }
   
 
@@ -27,6 +32,11 @@ public class ClickControl : MonoBehaviour
         {
             text = GetComponent<TextMeshPro>();
             text.color = Color.black;
+            if (!isHighlighted)
+            {
+                highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
+                highlightRenderer.enabled = false; // Harften ayrıldığında vurgulamayı kapat
+            }
             active = true;
 
           
@@ -37,7 +47,12 @@ public class ClickControl : MonoBehaviour
         public void OnClick()
         {
         text = GetComponent<TextMeshPro>();
-        text.color = Color.blue;
+        text.color = Color.white;
+        if (!isHighlighted)
+        {
+            highlightRenderer.enabled = true; // Harfin üzerine gelindiğinde vurgulamayı aç
+        }
+        // CreateHighlight();
         // LineManager'ı burada çağırarak çizgi çizimini güncelle
         LineControl lineControl = FindObjectOfType<LineControl>();
         if (lineControl != null)
@@ -80,6 +95,13 @@ public class ClickControl : MonoBehaviour
     {
         FirstClick = false;
 
+        
+            highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
+            highlightRenderer.enabled = false; // Harften ayrıldığında vurgulamayı kapat
+        
+       
+        
+
         // LineManager'ı burada çağırarak çizgiyi temizle
         LineControl lineControl = FindObjectOfType<LineControl>();
         if (lineControl != null)
@@ -91,5 +113,6 @@ public class ClickControl : MonoBehaviour
         Control = true;
        
     }
-   
+
+
 }

@@ -12,10 +12,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - BigCircle
+  - Letters
+  - BabyCircle
+  - Line
   - 
   - 
   - 
@@ -39,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BigCircle
+    uniqueID: 2914266889
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Line
+    uniqueID: 58878299
+    locked: 0
+  - name: BabyCircle
+    uniqueID: 3776420185
+    locked: 0
+  - name: Letters
+    uniqueID: 958538801
     locked: 0
