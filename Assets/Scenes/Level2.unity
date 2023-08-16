@@ -3140,6 +3140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 633697451, guid: 379312b93d04a405b969930a48169b78, type: 3}
+      propertyPath: CoinText
+      value: 
+      objectReference: {fileID: 2058117052}
     - target: {fileID: 4552556392083834728, guid: 379312b93d04a405b969930a48169b78, type: 3}
       propertyPath: m_Name
       value: Canvas Variant 1
@@ -3243,6 +3247,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4552556392083834728, guid: 379312b93d04a405b969930a48169b78, type: 3}
   m_PrefabInstance: {fileID: 2058117050}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2058117052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3904867021964954214, guid: 379312b93d04a405b969930a48169b78, type: 3}
+  m_PrefabInstance: {fileID: 2058117050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2071611567
 PrefabInstance:
   m_ObjectHideFlags: 0
