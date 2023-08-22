@@ -4,7 +4,9 @@ using UnityEngine;
 using TMPro;
 
 public class ClickControl : MonoBehaviour
+
 {
+    //public TextMeshPro wordDisplay;
     public GameObject highlightPrefab; //Yuvarlak obje ön tanımlı prefab
                                        // private GameObject currentHighlight; // Şu an seçili olan yuvarlak obje
 
@@ -60,8 +62,8 @@ public class ClickControl : MonoBehaviour
             lineControl.UpdateLineRenderer();
         }
         CurrentWord += GetComponent<TextMeshPro>().text;
-       
         Debug.Log(CurrentWord);
+        //wordDisplay.text = CurrentWord;
         active = false;
 
        

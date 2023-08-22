@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Letter
+  - Level1.1
+  - Level2.1
   layers:
   - Default
   - TransparentFX

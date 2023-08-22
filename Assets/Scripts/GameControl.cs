@@ -7,10 +7,7 @@ using TMPro;
 public class GameControl : MonoBehaviour
 {
 
-    
-    //public int CoinsScore=0;
-    //private int coinsPerLevel = 1;
-    //public TextMeshProUGUI CoinText;
+   
     public List<Transform> Boxes;
     public List<int[]> arrs = new List<int[]>();
 
@@ -22,31 +19,18 @@ public class GameControl : MonoBehaviour
     public int[] arr6;
     public int[] arr7;
     public int[] arr8;
-
+    public int[] arr9;
     //dizi oluşturup unity üzerinden kelimeleri dizilere yerleştirdik.
 
     public List<string> CorrectWords;
     public bool[] AllCorrectWords;
     public static bool EndGame;
-    public GameObject NextText;
+    //public GameObject NextText;
 
 
     void Start()
     {
-        /*
-        // Eğer daha önce bir kayıt yoksa, varsayılan değer olarak 1. seviyeyi kullan
-        if (PlayerPrefs.HasKey("CoinsScore"))
-        {
-          CoinsScore = PlayerPrefs.GetInt("CoinsScore");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("CoinsScore", CoinsScore);
-        }
-        UpdateCoinText(); // Coin miktarını başlangıçta güncelle
-        */
         
-        NextText.SetActive(false);
         arrs.Add(arr1);
         arrs.Add(arr2);
         arrs.Add(arr3);
@@ -55,6 +39,7 @@ public class GameControl : MonoBehaviour
         arrs.Add(arr6);
         arrs.Add(arr7);
         arrs.Add(arr8);
+        arrs.Add(arr9);
 
         AllCorrectWords = new bool[CorrectWords.Count];
 
@@ -113,29 +98,22 @@ public class GameControl : MonoBehaviour
             }
         }
         if (num == 0) //eğer sayaç sıfırlanırsa
-        {/*
-            CoinsScore++;
-            PlayerPrefs.SetInt("CoinsScore", CoinsScore);
+        {
 
-            // Oyuncuya coin ekle
-            int currentCoins = PlayerPrefs.GetInt("Coins", 0);
-            currentCoins += coinsPerLevel;
-            PlayerPrefs.SetInt("Coins", currentCoins);
-            UpdateCoinText(); // Coin miktarını güncelle
-            */
-            
 
-            // EndGame = true; //oyun biter.
-            NextText.SetActive(true);
+            //EndGame = true; //oyun biter.
+            ScenesManager scenesManager = FindObjectOfType<ScenesManager>();
+            scenesManager.ShowNextLevel();
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
+
+
+            // scenesManager.NextText.SetActive(true);
+            //scenesManager.LoadNextLevel();
+
         }
+       
     }
-    /*
-    private void UpdateCoinText()
-    {
-        int currentCoins = PlayerPrefs.GetInt("Coins", 0);
-        CoinText.GetComponent<TextMeshProUGUI>().text= "Coins: " + currentCoins;
-    }
-    */
+    
 
 
 }
