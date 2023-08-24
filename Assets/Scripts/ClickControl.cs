@@ -50,6 +50,7 @@ public class ClickControl : MonoBehaviour
         {
         text = GetComponent<TextMeshPro>();
         text.color = Color.white;
+
         if (!isHighlighted)
         {
             highlightRenderer.enabled = true; // Harfin üzerine gelindiğinde vurgulamayı aç

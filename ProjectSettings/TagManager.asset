@@ -7,6 +7,7 @@ TagManager:
   - Letter
   - Level1.1
   - Level2.1
+  - Levels
   layers:
   - Default
   - TransparentFX
