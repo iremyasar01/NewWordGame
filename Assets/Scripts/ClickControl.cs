@@ -6,7 +6,8 @@ using TMPro;
 public class ClickControl : MonoBehaviour
 
 {
-    //public TextMeshPro wordDisplay;
+    public List<Transform> selectedLetters2 = new List<Transform>();
+    public TextMeshPro selectedLetterText; // Harfi yazdırmak için UI Text bileşeni
     public GameObject highlightPrefab; //Yuvarlak obje ön tanımlı prefab
                                        // private GameObject currentHighlight; // Şu an seçili olan yuvarlak obje
 
@@ -44,12 +45,15 @@ public class ClickControl : MonoBehaviour
           
         }
     }
-
+    
 
         public void OnClick()
         {
         text = GetComponent<TextMeshPro>();
         text.color = Color.white;
+     
+
+
 
         if (!isHighlighted)
         {
@@ -63,8 +67,9 @@ public class ClickControl : MonoBehaviour
             lineControl.UpdateLineRenderer();
         }
         CurrentWord += GetComponent<TextMeshPro>().text;
+        selectedLetterText.text = CurrentWord;
         Debug.Log(CurrentWord);
-        //wordDisplay.text = CurrentWord;
+       
         active = false;
 
        

@@ -463,9 +463,9 @@ MonoBehaviour:
   currentLevelPrefab: {fileID: 0}
   NextText: {fileID: 2833964894257694991}
   levelPrefabs:
-  - {fileID: 3351479377638105385, guid: 47eb243c6279d46b0ada49100bed5deb, type: 3}
-  - {fileID: 9193580214364168264, guid: 95230a8cad33847db9d664ec6df9a88d, type: 3}
-  - {fileID: 8022125165018920759, guid: 7281ef074e99c4dd68a9381696b60286, type: 3}
+  - {fileID: 649421717278769264, guid: 47eb243c6279d46b0ada49100bed5deb, type: 3}
+  - {fileID: 395154902013011589, guid: 95230a8cad33847db9d664ec6df9a88d, type: 3}
+  - {fileID: 7818974291293083259, guid: 7281ef074e99c4dd68a9381696b60286, type: 3}
   CoinsScore: 0
   CoinText: {fileID: 531160689}
 --- !u!1 &1215484316

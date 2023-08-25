@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Rendering;
+using TMPro;
 
 public class LineControl : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class LineControl : MonoBehaviour
    
     public LineRenderer lineRenderer;
     public List<Transform> selectedLetters = new List<Transform>();
+    public GameObject lettersText;
+
 
     private void Update()
     {
