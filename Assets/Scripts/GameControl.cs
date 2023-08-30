@@ -8,11 +8,8 @@ using System;
 
 public class GameControl : MonoBehaviour
 {
-    //public float moveDuration = 1.0f;
-
-    // private int currentIndex = 0; // Şu anki hedef pozisyonun indeksi
-
-    //public List<Transform> selectedLetters2 = new List<Transform>();
+   
+    public static GameControl Instance { get; private set; }
     public List<Transform> Boxes;
     public List<int[]> arrs = new List<int[]>();
 
@@ -49,6 +46,10 @@ public class GameControl : MonoBehaviour
         AllCorrectWords = new bool[CorrectWords.Count];
 
     }
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     void Update()
@@ -61,21 +62,15 @@ public class GameControl : MonoBehaviour
 
             for (int i = 0; i < CorrectWords.Count; i++)
             {
-
-
-
+             
                 if (ClickControl.CurrentWord == CorrectWords[i] && AllCorrectWords[i] == false)
                 //eğer girdiğim şimdiki kelime CorrectWords listesinden bir elemana eşitse 
 
-
                 {
-
-
-
-
                     AllCorrectWords[i] = true;
                     int[] index = arrs[i];
-
+                    Debug.Log(CorrectWords[i].ToString().Length); //doğru kelimeyi bulduğu yer.
+                    AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index );
 
                     for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
                     {
@@ -84,6 +79,8 @@ public class GameControl : MonoBehaviour
                         Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
                         //git Boxes listesininin içindeki dizilerin Text'ini al onları şimdiki kelimenin?
                         //bunu stringe çevir.
+                      
+                     
 
                     }
                 }
@@ -112,15 +109,9 @@ public class GameControl : MonoBehaviour
         }
         if (num == 0) //eğer sayaç sıfırlanırsa
         {
-
-
             //EndGame = true; //oyun biter.
-            ScenesManager scenesManager = FindObjectOfType<ScenesManager>();
-            scenesManager.ShowNextLevel();
+            ScenesManager.Instance.ShowNextLevel();
             PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
-
-
-            // scenesManager.NextText.SetActive(true);
             //scenesManager.LoadNextLevel();
 
         }
@@ -219,7 +210,7 @@ public class GameControl : MonoBehaviour
     }
 
 
-    await Task.WhenAll(tasks); //ttüm nesneelerin hareketini bekelr.
+    await Task.WhenAll(tasks); //tüm nesneelerin hareketini bekelr.
 
     foreach (var Letter in selectedLetters2) Letter.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce);
   }

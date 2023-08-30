@@ -11,7 +11,7 @@ public class ScenesManager : MonoBehaviour
 
     [SerializeField] private GameObject currentLevelPrefab; // Mevcut seviye prefabını temsil eden referans
 
-  
+    public float delayInSeconds = 2.0f; // Next level panelini ne kadar süre sonra açmak istediğinizi ayarlayın
     public GameObject NextText;
     public GameObject[] levelPrefabs; // Seviye prefablarını içeren dizi
     private int currentLevelIndex = 0; // Mevcut seviye indeksi
@@ -64,10 +64,14 @@ public class ScenesManager : MonoBehaviour
     {
         if (currentLevelPrefab != null)
         {
-            Destroy(currentLevelPrefab);
+            // Belirtilen süre sonra objeyi yok etmek için bir Coroutine başlatın
+            StartCoroutine(DestroyObjectWithDelay());
+            // Destroy(currentLevelPrefab);
         }
         currentLevelIndex = PlayerPrefs.GetInt("Level"); //aldığın level değerini şuanki levelin indeksine eşitle.
-        NextText.SetActive(true);
+        // Belirtilen süre sonra Next level panelini açmak için bir Coroutine başlatın
+        StartCoroutine(ActivateNextLevelPanel());
+       // NextText.SetActive(true);
         CoinsScore++;
         PlayerPrefs.SetInt("CoinsScore", CoinsScore);
 
@@ -86,7 +90,34 @@ public class ScenesManager : MonoBehaviour
         }
 
     }
-    private void UpdateCoinText()
+
+    private IEnumerator DestroyObjectWithDelay()
+    {
+        // Belirtilen süre kadar bekleyin
+        yield return new WaitForSeconds(delayInSeconds);
+
+        // Bekleme süresi sona erdiğinde objeyi yok et
+        if (currentLevelPrefab != null)
+        {
+            Destroy(currentLevelPrefab);
+        }
+    }
+
+    private IEnumerator ActivateNextLevelPanel()
+    {
+        // Belirtilen süre kadar bekleyin
+        yield return new WaitForSeconds(delayInSeconds);
+        // Bekleme süresi sona erdiğinde Next level panelini aktif hale getirin
+        if (NextText != null)
+        {
+            NextText.SetActive(true);
+        }
+    }
+
+
+
+
+        private void UpdateCoinText()
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 1);
         CoinText.GetComponent<TextMeshProUGUI>().text = "Coins: " + currentCoins;

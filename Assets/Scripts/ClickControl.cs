@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 
 public class ClickControl : MonoBehaviour
 
 {
-    public List<Transform> selectedLetters2 = new List<Transform>();
-    public TextMeshPro selectedLetterText; // Harfi yazdırmak için UI Text bileşeni
+ 
+    public TextMeshPro selectedLetterText; // Harfi yazdırmak için  Text bileşeni
     public GameObject highlightPrefab; //Yuvarlak obje ön tanımlı prefab
                                        // private GameObject currentHighlight; // Şu an seçili olan yuvarlak obje
 
@@ -23,6 +25,7 @@ public class ClickControl : MonoBehaviour
 
     void Start()
     {
+        
         highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
         highlightRenderer.enabled = false; // Vurgulamayı başlangıçta kapalı yap
     }
@@ -71,8 +74,9 @@ public class ClickControl : MonoBehaviour
         Debug.Log(CurrentWord);
        
         active = false;
+        
 
-       
+
 
 
     }
@@ -103,11 +107,11 @@ public class ClickControl : MonoBehaviour
     {
         FirstClick = false;
 
-        
+            selectedLetterText.text = "";
             highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
             highlightRenderer.enabled = false; // Harften ayrıldığında vurgulamayı kapat
-        
-       
+
+
         
 
         // LineManager'ı burada çağırarak çizgiyi temizle
@@ -117,10 +121,10 @@ public class ClickControl : MonoBehaviour
             lineControl.ClearSelectedLetters();
         }
 
-        // CurrentWord = "";
+        
         Control = true;
        
     }
-
+   
 
 }
