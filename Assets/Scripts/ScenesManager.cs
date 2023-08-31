@@ -11,7 +11,7 @@ public class ScenesManager : MonoBehaviour
 
     [SerializeField] private GameObject currentLevelPrefab; // Mevcut seviye prefabını temsil eden referans
 
-    public float delayInSeconds = 2.0f; // Next level panelini ne kadar süre sonra açmak istediğinizi ayarlayın
+    public float delayInSeconds = 1.5f; // Next level panelini ne kadar süre sonra açmak istediğinizi ayarlayın
     public GameObject NextText;
     public GameObject[] levelPrefabs; // Seviye prefablarını içeren dizi
     private int currentLevelIndex = 0; // Mevcut seviye indeksi
@@ -114,10 +114,7 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
-
-
-
-        private void UpdateCoinText()
+   private void UpdateCoinText()
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 1);
         CoinText.GetComponent<TextMeshProUGUI>().text = "Coins: " + currentCoins;

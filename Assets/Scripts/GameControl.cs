@@ -68,22 +68,24 @@ public class GameControl : MonoBehaviour
 
                 {
                     AllCorrectWords[i] = true;
-                    int[] index = arrs[i];
+                    int[] index = arrs[i]; 
                     Debug.Log(CorrectWords[i].ToString().Length); //doğru kelimeyi bulduğu yer.
-                    AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index );
+                   AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index );
 
                     for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
                     {
-
-
+                       
                         Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
                         //git Boxes listesininin içindeki dizilerin Text'ini al onları şimdiki kelimenin?
                         //bunu stringe çevir.
-                      
                      
 
+
                     }
+                   
                 }
+
+                   
             }
 
             ClickControl.CurrentWord = "";

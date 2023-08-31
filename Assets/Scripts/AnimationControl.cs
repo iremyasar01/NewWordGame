@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using TMPro;
@@ -13,7 +11,7 @@ public class AnimationControl : MonoBehaviour
     public GameObject prefab; //textMesh'i içeren prefab.
     //public TextMeshPro textMesh;
     public List<Transform> targetPositions; // Her harf için hedef pozisyonların listesi
-                                            // Bu sınıfın tek örneğini oluşturmak için bir Singleton kullanabilirsiniz.
+    // Bu sınıfın tek örneğini oluşturmak için bir Singleton kullanabilirsiniz.
     public static AnimationControl Instance { get; private set; }
     public float moveDuration; // Hareket süresi
     public float delayBetweenLetters; // Yok olmadan önce bekleme süresi
@@ -22,10 +20,10 @@ public class AnimationControl : MonoBehaviour
         Instance = this;
     }
 
-    public void MoveTextMesh(string letters,int[] arr)
+    public void MoveTextMesh(string letters, int[] arr)
     {
-        
-        int letterCount=letters.Length;
+
+        int letterCount = letters.Length;
         List<TextMeshPro> textMeshPros = new List<TextMeshPro>();
 
         for (int i = 0; i < letterCount; i++) //kelime sayısı kadar prefab oluştur.
@@ -33,26 +31,28 @@ public class AnimationControl : MonoBehaviour
             textMeshPros.Add(Instantiate(prefab).GetComponent<TextMeshPro>());
             //ürettiği gameobject'i döndürüyor.
             textMeshPros[i].SetText(letters[i].ToString());
-
-              
             // DOTween ile TextMesh'i hedef pozisyona taşı
             textMeshPros[i].transform.DOMove(targetPositions[arr[i]].position, moveDuration)
                 .SetEase(Ease.InOutQuad) // Hareketin hız eğrisi
                 .SetDelay(delayBetweenLetters * i) // Harf arasındaki gecikme (opsiyonel)
-                .OnComplete(() => {  // Hareket tamamlandığında yapılacak işlem
+                .OnComplete(() => {
+                   
                     GameObject temp = textMeshPros[0].gameObject; //direkt destroy edersek bir daha kullanamayız diye.
                     textMeshPros.RemoveAt(0);
                     Destroy(temp);
-                   //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
+                    //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
 
                 });
-           
-            
+
+                
+
+
+
         }
 
     }
-  
-}
+
+ }
 
 
 
