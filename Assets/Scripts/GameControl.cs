@@ -73,16 +73,16 @@ public class GameControl : MonoBehaviour
                     Debug.Log(CorrectWords[i].ToString().Length); //doğru kelimeyi bulduğu yer.
                    AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index );
 
-                    for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
-                    {
-                     
-                       //AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index);
+                    //for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
+                    //{
+
+                        //AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index);
                         // Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
                         //git Boxes listesininin içindeki dizilerin Text'ini al onları şimdiki kelimenin?
                         //bunu stringe çevir.
 
 
-                    }
+                    //}
                    
                 }
 

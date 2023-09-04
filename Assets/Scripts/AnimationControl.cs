@@ -9,7 +9,6 @@ public class AnimationControl : MonoBehaviour
 {
 
 
-
     public GameObject prefab; //textMesh'i içeren prefab.
     //public TextMeshPro textMesh;
     public List<Transform> targetPositions; // Her harf için hedef pozisyonların listesi
@@ -48,34 +47,43 @@ public class AnimationControl : MonoBehaviour
                  .SetDelay(delayBetweenLetters * i) // Harf arasındaki gecikme (opsiyonel)
                  .OnComplete(() =>
                  {
-                         temp.transform.SetParent(target);
+                     temp.transform.SetParent(target);
+                     //temp target'ın child'ı haline geliyor.
+                     temp.DOColor(Color.blue, moveDuration)
+                      .SetEase(Ease.InOutQuad);
 
-                         //temp target'ın child'ı haline geliyor.
-                          /*
-                          if (GameControl.EndGame == true)
-                          {
-                              foreach (var textMeshPro in temp)
-                              {
-                                  Destroy(textMeshPro.gameObject);
-                              }
-                              //GameObject temp = temp[i].gameObject; //direkt destroy edersek bir daha kullanamayız diye.
-                              temp.Clear();
-                               //Destroy(temp);
-                             
-                             
+                     SpriteRenderer spriteRenderer = target.GetComponentInParent<SpriteRenderer>();
+                     spriteRenderer.DOColor(Color.grey,moveDuration)
+                     .SetEase(Ease.InOutQuad);
 
-                          }
-                          */
+                    
+
                      
-
-                          //GameObject temp = temp[0].gameObject; //direkt destroy edersek bir daha kullanamayız diye.
-                          //temp.RemoveAt(0);
+                     /*
+                     if (GameControl.EndGame == true)
+                     {
+                         foreach (var textMeshPro in temp)
+                         {
+                             Destroy(textMeshPro.gameObject);
+                         }
+                         //GameObject temp = temp[i].gameObject; //direkt destroy edersek bir daha kullanamayız diye.
+                         temp.Clear();
                           //Destroy(temp);
-                          //  GameControl.Instance.Boxes[arr[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
 
-                         //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
 
-                     });
+
+                     }
+                     */
+
+
+                     //GameObject temp = temp[0].gameObject; //direkt destroy edersek bir daha kullanamayız diye.
+                     //temp.RemoveAt(0);
+                     //Destroy(temp);
+                     //  GameControl.Instance.Boxes[arr[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
+
+                     //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
+
+                 });
 
          }
      }
