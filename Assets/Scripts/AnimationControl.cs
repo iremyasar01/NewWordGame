@@ -7,7 +7,7 @@ using System;
 
 public class AnimationControl : MonoBehaviour
 {
-   
+
 
 
     public GameObject prefab; //textMesh'i içeren prefab.
@@ -73,15 +73,7 @@ public class AnimationControl : MonoBehaviour
                           //Destroy(temp);
                           //  GameControl.Instance.Boxes[arr[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
 
-
-
-
-
-
-
-
-
-                          //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
+                         //GameControl.Instance.EndGameControl(); //bunu buraya ekleyince coinleri animasyon sayısı kadar arttırıyo
 
                      });
 
