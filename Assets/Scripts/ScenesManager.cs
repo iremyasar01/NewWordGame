@@ -38,6 +38,8 @@ public class ScenesManager : MonoBehaviour
         print(PlayerPrefs.GetInt("Level")); //Level adlı key'le saklanan int değerini al.
         //oyuncunun son ilerlemesini takip etmek amacıyla kullanılır.
         NextText.SetActive(false);
+        //level atlamayı playerPrefs ile tuttuğun için işin bitince bunu true yap ve main menuye tıkla.
+        //Çünkü sıfırlama işlemine main menuye atadın.
         /*
         // Mevcut seviye indeksine göre prefabı çağır
         if (currentLevelIndex < LevelPrefabs.Count)
@@ -66,12 +68,13 @@ public class ScenesManager : MonoBehaviour
         {
             // Belirtilen süre sonra objeyi yok etmek için bir Coroutine başlatın
             StartCoroutine(DestroyObjectWithDelay());
+
             // Destroy(currentLevelPrefab);
         }
         currentLevelIndex = PlayerPrefs.GetInt("Level"); //aldığın level değerini şuanki levelin indeksine eşitle.
         // Belirtilen süre sonra Next level panelini açmak için bir Coroutine başlatın
         StartCoroutine(ActivateNextLevelPanel());
-       // NextText.SetActive(true);
+        NextText.SetActive(true);
         CoinsScore++;
         PlayerPrefs.SetInt("CoinsScore", CoinsScore);
 
@@ -90,7 +93,7 @@ public class ScenesManager : MonoBehaviour
         }
 
     }
-
+    
     private IEnumerator DestroyObjectWithDelay()
     {
         // Belirtilen süre kadar bekleyin
@@ -113,7 +116,7 @@ public class ScenesManager : MonoBehaviour
             NextText.SetActive(true);
         }
     }
-
+    
    private void UpdateCoinText()
     {
         int currentCoins = PlayerPrefs.GetInt("Coins", 1);
@@ -122,8 +125,7 @@ public class ScenesManager : MonoBehaviour
     public void GenerateLevel()
     {
         NextText.SetActive(false);
-        //level atlamayı playerPrefs ile tuttuğun için işin bitince bunu true yap ve main menuye tıkla.
-        //Çünkü sıfırlama işlemine main menuye atadın.
+       
         int getLevel = PlayerPrefs.GetInt("Level");
         if (currentLevelIndex >= 0 && currentLevelIndex < levelPrefabs.Length)
             //Eğer şuanki level'in indeksi 0'a eşit ya da büyükse ve şuanki levelin indeksi

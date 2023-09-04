@@ -4254,7 +4254,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.039215688, g: 0.003921569, b: 0.003921569, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4277,7 +4277,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -9471,6 +9471,10 @@ PrefabInstance:
       propertyPath: targetPositions.Array.data[25]
       value: 
       objectReference: {fileID: 1229826851276683705}
+    - target: {fileID: 1542895593660706351, guid: 4d67551a7644949d1b61e8798b6ff2d3, type: 3}
+      propertyPath: targetPositions.Array.data[26]
+      value: 
+      objectReference: {fileID: 3378377326962542499, guid: 7ed3b829ec776484db781bb54d5dbc7e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d67551a7644949d1b61e8798b6ff2d3, type: 3}
 --- !u!4 &7150833493461701822 stripped

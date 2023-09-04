@@ -58,6 +58,7 @@ public class GameControl : MonoBehaviour
         //tıklama bittiyse ve oyun bitmediyse aşağıdaki kodlar çalışsın.
         //kelimenin doğruluğunu tespit etmek için.
         {
+            
             ClickControl.Control = false; //sadece bi kere çalışması için geri false'a çevirmeliyiz yoksa frame sayısı kadar çalışır.
 
             for (int i = 0; i < CorrectWords.Count; i++)
@@ -74,11 +75,11 @@ public class GameControl : MonoBehaviour
 
                     for (int j = 0; j < CorrectWords[i].Length; j++) //correctWords listesindeki tüm elemenlar bulunana kadar
                     {
-                       
-                        Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
+                     
+                       //AnimationControl.Instance.MoveTextMesh(CorrectWords[i].ToString(), index);
+                        // Boxes[index[j]].GetComponent<TextMeshPro>().text = ClickControl.CurrentWord[j].ToString();
                         //git Boxes listesininin içindeki dizilerin Text'ini al onları şimdiki kelimenin?
                         //bunu stringe çevir.
-                     
 
 
                     }
@@ -87,7 +88,7 @@ public class GameControl : MonoBehaviour
 
                    
             }
-
+            
             ClickControl.CurrentWord = "";
             EndGameControl();
 
@@ -111,7 +112,7 @@ public class GameControl : MonoBehaviour
         }
         if (num == 0) //eğer sayaç sıfırlanırsa
         {
-            //EndGame = true; //oyun biter.
+           // EndGame = true; //oyun biter.
             ScenesManager.Instance.ShowNextLevel();
             PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
             //scenesManager.LoadNextLevel();
