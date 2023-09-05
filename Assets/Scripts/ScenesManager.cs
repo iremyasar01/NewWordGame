@@ -36,7 +36,7 @@ public class ScenesManager : MonoBehaviour
         }
         GenerateLevel();
         print(PlayerPrefs.GetInt("Level")); //Level adlı key'le saklanan int değerini al.
-        //oyuncunun son ilerlemesini takip etmek amacıyla kullanılır.
+         //oyuncunun son ilerlemesini takip etmek amacıyla kullanılır.
         NextText.SetActive(false);
         //level atlamayı playerPrefs ile tuttuğun için işin bitince bunu true yap ve main menuye tıkla.
         //Çünkü sıfırlama işlemine main menuye atadın.
@@ -48,6 +48,10 @@ public class ScenesManager : MonoBehaviour
         }
          NextText.SetActive(false);
         */
+        if (PlayerPrefs.HasKey("Level"))
+            currentLevelIndex = PlayerPrefs.GetInt("Level");
+        else
+            PlayerPrefs.SetInt("Level", currentLevelIndex);
 
         // Eğer daha önce bir kayıt yoksa, varsayılan değer olarak 1. seviyeyi kullan
         if (PlayerPrefs.HasKey("CoinsScore"))
@@ -69,9 +73,11 @@ public class ScenesManager : MonoBehaviour
             // Belirtilen süre sonra objeyi yok etmek için bir Coroutine başlatın
             StartCoroutine(DestroyObjectWithDelay());
 
-            // Destroy(currentLevelPrefab);
+             //Destroy(currentLevelPrefab);
         }
-        currentLevelIndex = PlayerPrefs.GetInt("Level"); //aldığın level değerini şuanki levelin indeksine eşitle.
+      
+       currentLevelIndex = PlayerPrefs.GetInt("Level"); //aldığın level değerini şuanki levelin indeksine eşitle.
+        ///BUNA VİRGÜL BİR EKLEYİNCE 2.LEVELİ TEKRARLIYOR
         // Belirtilen süre sonra Next level panelini açmak için bir Coroutine başlatın
         StartCoroutine(ActivateNextLevelPanel());
         NextText.SetActive(true);
@@ -79,18 +85,21 @@ public class ScenesManager : MonoBehaviour
         PlayerPrefs.SetInt("CoinsScore", CoinsScore);
 
         // Oyuncuya coin ekle
-        int currentCoins = PlayerPrefs.GetInt("Coins", 1);
+        int currentCoins = PlayerPrefs.GetInt("Coins", 0);
         currentCoins += coinsPerLevel;
         PlayerPrefs.SetInt("Coins", currentCoins);
         UpdateCoinText(); // Coin miktarını güncelle
-
+        
         // Tüm seviyeler tamamlandıysa oyunu yeniden başlat
         if (currentLevelIndex >= levelPrefabs.Length)
         {
+            Debug.Log("bn");
             currentLevelIndex = 0;
             PlayerPrefs.SetInt("Level", currentLevelIndex);
+           currentLevelPrefab = Instantiate(levelPrefabs[currentLevelIndex % levelPrefabs.Length], Vector2.zero, Quaternion.identity);
             NextText.SetActive(false);
         }
+        
 
     }
     
@@ -105,7 +114,7 @@ public class ScenesManager : MonoBehaviour
             Destroy(currentLevelPrefab);
         }
     }
-
+    
     private IEnumerator ActivateNextLevelPanel()
     {
         // Belirtilen süre kadar bekleyin
@@ -125,17 +134,44 @@ public class ScenesManager : MonoBehaviour
     public void GenerateLevel()
     {
         NextText.SetActive(false);
-       
-        int getLevel = PlayerPrefs.GetInt("Level");
-        if (currentLevelIndex >= 0 && currentLevelIndex < levelPrefabs.Length)
-            //Eğer şuanki level'in indeksi 0'a eşit ya da büyükse ve şuanki levelin indeksi
-            //bütün prefabları tutan dizimin uzunluğundan küçükse 
+        //leveller bitince bunu true yap.
+
+        //int getLevel = PlayerPrefs.GetInt("Level");
+        currentLevelIndex = PlayerPrefs.GetInt("Level");
+
+        if (currentLevelIndex >= 0 )
+
         {
-            currentLevelPrefab = Instantiate(levelPrefabs[getLevel],Vector2.zero, Quaternion.identity);
+
+            currentLevelPrefab = Instantiate(levelPrefabs[currentLevelIndex % levelPrefabs.Length], Vector2.zero, Quaternion.identity);
+            
+        }
+        /*
+        
+       if (currentLevelIndex >= 0 && currentLevelIndex < levelPrefabs.Length)
+        //Eğer şuanki level'in indeksi 0'a eşit ya da büyükse ve şuanki levelin indeksi
+        //bütün prefabları tutan dizimin uzunluğundan küçükse 
+        {
+            currentLevelPrefab = Instantiate(levelPrefabs[getLevel], Vector2.zero, Quaternion.identity);
             //diğer leveli getir.
         }
+        /*
+        else if (currentLevelIndex >= 0 && currentLevelIndex >= levelPrefabs.Length)
+       
+        {
 
+            currentLevelPrefab = Instantiate(levelPrefabs[currentLevelIndex % levelPrefabs.Length], Vector2.zero, Quaternion.identity);
 
+        }
+        */
+         
+        /*
+        else if (currentLevelIndex >= 0 && currentLevelIndex > levelPrefabs.Length)
+        {
+            currentLevelPrefab = Instantiate(levelPrefabs[currentLevelIndex % levelPrefabs.Length], Vector2.zero, Quaternion.identity);
+        }
+        //YARIN BAK
+        */
     }
     /*
     public void LoadNextLevel()
@@ -212,6 +248,7 @@ public class ScenesManager : MonoBehaviour
 
     }
     */
+
     public void LoadMainMenu()
     {
         //CoinsScore = 0; // Coins sayısını sıfırla
