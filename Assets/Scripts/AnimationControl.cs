@@ -8,7 +8,7 @@ using System;
 public class AnimationControl : MonoBehaviour
 {
 
-
+[SerializeField] private ParticleSystem particle = default;
     public GameObject prefab; //textMesh'i içeren prefab.
     //public TextMeshPro textMesh;
     public List<Transform> targetPositions; // Her harf için hedef pozisyonların listesi
@@ -22,8 +22,8 @@ public class AnimationControl : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        // Sequence'i başlatın
-        // letterAnimationSequence = DOTween.Sequence();
+     
+
     }
 
     public void MoveTextMesh(string letters, int[] arr)
@@ -56,9 +56,23 @@ public class AnimationControl : MonoBehaviour
                      spriteRenderer.DOColor(Color.grey,moveDuration)
                      .SetEase(Ease.InOutQuad);
 
-                    
+                     particle.transform.position = target.position;
+                     particle.Play();
 
-                     
+                     /*
+                     if (particle == null)
+                     {
+                         particle = GetComponent<ParticleSystem>();
+                     }
+
+                     if (particle != null && !particle.IsAlive(true))
+                     {
+                         Destroy(gameObject);
+                     }
+
+
+                     //PARTICLE BURAYA
+
                      /*
                      if (GameControl.EndGame == true)
                      {
