@@ -89,7 +89,7 @@ public class ScenesManager : MonoBehaviour
         currentCoins += coinsPerLevel;
         PlayerPrefs.SetInt("Coins", currentCoins);
         UpdateCoinText(); // Coin miktarını güncelle
-        
+        /*
         // Tüm seviyeler tamamlandıysa oyunu yeniden başlat
         if (currentLevelIndex >= levelPrefabs.Length)
         {
@@ -100,7 +100,7 @@ public class ScenesManager : MonoBehaviour
             NextText.SetActive(false);
         }
         
-
+        */
     }
     
     private IEnumerator DestroyObjectWithDelay()

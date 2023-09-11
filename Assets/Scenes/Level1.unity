@@ -467,6 +467,8 @@ MonoBehaviour:
   - {fileID: 1397024687581078772, guid: 47eb243c6279d46b0ada49100bed5deb, type: 3}
   - {fileID: 395154902013011589, guid: 95230a8cad33847db9d664ec6df9a88d, type: 3}
   - {fileID: 7818974291293083259, guid: 7281ef074e99c4dd68a9381696b60286, type: 3}
+  - {fileID: 131144332509704270, guid: 6ed79eddf3519425d843108c4d1f8372, type: 3}
+  - {fileID: 1249968646748331000, guid: 86c7fa4505d4b43b8a0f9651503b6c2c, type: 3}
   CoinsScore: 0
   CoinText: {fileID: 531160689}
 --- !u!1 &1215484316

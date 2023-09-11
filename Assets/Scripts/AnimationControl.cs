@@ -8,7 +8,7 @@ using System;
 public class AnimationControl : MonoBehaviour
 {
 
-[SerializeField] private ParticleSystem particle = default;
+    [SerializeField] private ParticleSystem particle = default;
     public GameObject prefab; //textMesh'i içeren prefab.
     //public TextMeshPro textMesh;
     public List<Transform> targetPositions; // Her harf için hedef pozisyonların listesi

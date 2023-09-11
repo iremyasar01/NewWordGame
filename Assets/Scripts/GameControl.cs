@@ -22,6 +22,7 @@ public class GameControl : MonoBehaviour
     public int[] arr7;
     public int[] arr8;
     public int[] arr9;
+    public int[] arr10;
     //dizi oluşturup unity üzerinden kelimeleri dizilere yerleştirdik.
 
     public List<string> CorrectWords;
@@ -42,6 +43,7 @@ public class GameControl : MonoBehaviour
         arrs.Add(arr7);
         arrs.Add(arr8);
         arrs.Add(arr9);
+        arrs.Add(arr10);
 
         AllCorrectWords = new bool[CorrectWords.Count];
 
