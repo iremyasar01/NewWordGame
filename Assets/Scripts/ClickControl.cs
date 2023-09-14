@@ -8,7 +8,7 @@ using TMPro;
 public class ClickControl : MonoBehaviour
 
 {
- 
+    
     public TextMeshPro selectedLetterText; // Harfi yazdırmak için  Text bileşeni
     public GameObject highlightPrefab; //Yuvarlak obje ön tanımlı prefab
                                        // private GameObject currentHighlight; // Şu an seçili olan yuvarlak obje
@@ -20,6 +20,8 @@ public class ClickControl : MonoBehaviour
     public static bool FirstClick = false; //her objede oluşacağından ötürü tıklanmayan objelerde sıkıntı çıkarmasın diye
     //static tanımladık.
     TextMeshPro text;
+    private SpriteRenderer spriteText;
+    public GameObject highlightText;
     public bool active = true; //bir harfi bir kelimede bir kere seçebilmesi adına.
     public static bool Control = false;
 
@@ -54,9 +56,7 @@ public class ClickControl : MonoBehaviour
         {
         text = GetComponent<TextMeshPro>();
         text.color = Color.white;
-     
-
-
+       
 
         if (!isHighlighted)
         {
@@ -71,6 +71,17 @@ public class ClickControl : MonoBehaviour
         }
         CurrentWord += GetComponent<TextMeshPro>().text;
         selectedLetterText.text = CurrentWord;
+        spriteText = highlightText.GetComponent<SpriteRenderer>();
+        spriteText.enabled = true;
+        // TextMeshPro'nun boyutlarını al
+        Vector2 textSize = selectedLetterText.GetPreferredValues();
+        // SpriteRenderer'ın boyutlarını ayarla
+        spriteText.size = new Vector2(textSize.x, textSize.y);
+        Debug.Log(spriteText.size);
+        // SpriteRenderer'ın scale'ını güncelle.
+        spriteText.transform.localScale = new Vector2(textSize.x,textSize.y);
+        // SpriteRenderer'ı metnin ortasına konumlandır.
+        spriteText.transform.position = selectedLetterText.transform.position;
         Debug.Log(CurrentWord);
        
         active = false;
@@ -111,14 +122,13 @@ public class ClickControl : MonoBehaviour
             highlightRenderer = highlightPrefab.GetComponent<SpriteRenderer>();
             highlightRenderer.enabled = false; // Harften ayrıldığında vurgulamayı kapat
 
-
-        
-
         // LineManager'ı burada çağırarak çizgiyi temizle
         LineControl lineControl = FindObjectOfType<LineControl>();
         if (lineControl != null)
         {
             lineControl.ClearSelectedLetters();
+            spriteText = highlightText.GetComponent<SpriteRenderer>();
+            spriteText.enabled = false;
         }
 
         

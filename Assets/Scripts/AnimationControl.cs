@@ -49,11 +49,11 @@ public class AnimationControl : MonoBehaviour
                  {
                      temp.transform.SetParent(target);
                      //temp target'ın child'ı haline geliyor.
-                     temp.DOColor(Color.blue, moveDuration)
+                     temp.DOColor(Color.white, moveDuration)
                       .SetEase(Ease.InOutQuad);
 
                      SpriteRenderer spriteRenderer = target.GetComponentInParent<SpriteRenderer>();
-                     spriteRenderer.DOColor(Color.grey,moveDuration)
+                     spriteRenderer.DOColor(Color.blue,moveDuration)
                      .SetEase(Ease.InOutQuad);
 
                      particle.transform.position = target.position;

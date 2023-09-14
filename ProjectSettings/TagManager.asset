@@ -19,7 +19,7 @@ TagManager:
   - Letters
   - BabyCircle
   - Line
-  - 
+  - back
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: back
+    uniqueID: 1807928695
+    locked: 0
   - name: BigCircle
     uniqueID: 2914266889
     locked: 0

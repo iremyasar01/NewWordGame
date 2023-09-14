@@ -11,7 +11,7 @@ public class ScenesManager : MonoBehaviour
 
     [SerializeField] private GameObject currentLevelPrefab; // Mevcut seviye prefabını temsil eden referans
 
-    public float delayInSeconds = 1.5f; // Next level panelini ne kadar süre sonra açmak istediğinizi ayarlayın
+    public float delayInSeconds = 4f; // Next level panelini ne kadar süre sonra açmak istediğinizi ayarlayın
     public GameObject NextText;
     public GameObject[] levelPrefabs; // Seviye prefablarını içeren dizi
     private int currentLevelIndex = 0; // Mevcut seviye indeksi
@@ -80,7 +80,7 @@ public class ScenesManager : MonoBehaviour
         ///BUNA VİRGÜL BİR EKLEYİNCE 2.LEVELİ TEKRARLIYOR
         // Belirtilen süre sonra Next level panelini açmak için bir Coroutine başlatın
         StartCoroutine(ActivateNextLevelPanel());
-        NextText.SetActive(true);
+       // NextText.SetActive(true);
         CoinsScore++;
         PlayerPrefs.SetInt("CoinsScore", CoinsScore);
 
